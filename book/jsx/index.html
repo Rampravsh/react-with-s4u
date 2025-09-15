@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Guide to JSX</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals (Off-white, Muted Gray/Brown Text, Soft Sage Green Accent) -->
+    <!-- Application Structure Plan: A single-page app with a fixed left sidebar for navigation and a main content area. This structure breaks the dense topic into navigable sections, improving user experience over a linear document. Users can jump to concepts like "JSX Rules" or follow the flow. Interactive elements like code toggles and expandable cards will be used to make learning active, not passive. This is more effective for a technical tutorial than a simple report layout. -->
+    <!-- Visualization & Content Choices: Since the report is purely textual, no charts are used. Instead, interactivity is achieved through HTML/CSS/JS components. 'What is JSX?' -> Goal: Explain compilation -> Presentation: Interactive code block toggle -> Interaction: Click to reveal compiled JS -> Justification: Makes an abstract concept concrete. 'Rules of JSX' -> Goal: Teach rules -> Presentation: Grid of clickable cards -> Interaction: Click to reveal details -> Justification: Engages user and breaks up text. 'Components' -> Goal: Explain props -> Presentation: HTML/CSS diagram -> Interaction: Hover for info -> Justification: Visualizes data flow. All interactions are built with vanilla JS. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF8;
+            color: #4a4a4a;
+        }
+        .code-block {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            font-family: 'Courier New', Courier, monospace;
+            white-space: pre-wrap;
+        }
+        .nav-link {
+            transition: all 0.2s ease-in-out;
+        }
+        .nav-link.active {
+            background-color: #38A169;
+            color: white;
+            transform: translateX(4px);
+        }
+        .content-section {
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="flex min-h-screen">
+        <!-- Sidebar Navigation -->
+        <aside class="w-1/5 bg-white border-r border-gray-200 p-6 hidden md:block sticky top-0 h-screen">
+            <h2 class="text-xl font-bold mb-6 text-gray-800">JSX गाइड</h2>
+            <nav class="space-y-2">
+                <a href="#intro" class="nav-link block p-3 rounded-lg font-medium text-gray-700 hover:bg-gray-100">JSX का एनाटॉमी</a>
+                <a href="#what-is-jsx" class="nav-link block p-3 rounded-lg font-medium text-gray-700 hover:bg-gray-100">JSX क्या है?</a>
+                <a href="#key-concepts" class="nav-link block p-3 rounded-lg font-medium text-gray-700 hover:bg-gray-100">मुख्य अवधारणाएँ</a>
+                <a href="#rules" class="nav-link block p-3 rounded-lg font-medium text-gray-700 hover:bg-gray-100">JSX के नियम</a>
+                <a href="#components" class="nav-link block p-3 rounded-lg font-medium text-gray-700 hover:bg-gray-100">JSX में कंपोनेंट्स</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="w-full md:w-4/5 p-6 md:p-10">
+            <!-- Mobile Navigation -->
+            <div class="md:hidden mb-6">
+                <select id="mobile-nav" class="w-full p-3 border border-gray-300 rounded-lg bg-white text-gray-800">
+                    <option value="#intro">JSX का एनाटॉमी</option>
+                    <option value="#what-is-jsx">JSX क्या है?</option>
+                    <option value="#key-concepts">मुख्य अवधारणाएँ</option>
+                    <option value="#rules">JSX के नियम</option>
+                    <option value="#components">JSX में कंपोनेंट्स</option>
+                </select>
+            </div>
+
+            <!-- Introduction Section -->
+            <section id="intro" class="content-section space-y-4">
+                <h1 class="text-4xl font-bold text-gray-900">JSX का एनाटॉमी</h1>
+                <p class="text-lg text-gray-600">यह एक इंटरैक्टिव गाइड है जो आपको React में JSX की मूल बातें समझने में मदद करेगी। प्रत्येक अनुभाग JSX के एक प्रमुख पहलू पर प्रकाश डालता है, जो इसे सीखने वालों के लिए सुलभ और आकर्षक बनाता है।</p>
+                <p>JSX, जिसका पूरा नाम जावास्क्रिप्ट एक्सएमएल (JavaScript XML) है, जावास्क्रिप्ट के लिए एक सिंटैक्स एक्सटेंशन है जो आपको अपनी जावास्क्रिप्ट फाइलों के भीतर सीधे HTML जैसा कोड लिखने की अनुमति देता है। यह React का उपयोग करने के लिए एक आवश्यकता नहीं है, लेकिन यह लाइब्रेरी के साथ यूजर इंटरफेस बनाने का सबसे लोकप्रिय तरीका है क्योंकि यह कोड को अधिक पठनीय और सहज बनाता है।</p>
+            </section>
+
+            <!-- What is JSX? Section -->
+            <section id="what-is-jsx" class="content-section space-y-4">
+                <h2 class="text-3xl font-bold text-gray-900">JSX क्या है?</h2>
+                <p>इसके मूल में, JSX एक सिंटैक्टिक शुगर है। इसका मतलब है कि यह कोड लिखने का एक अधिक सुविधाजनक और पठनीय तरीका प्रदान करता है जो अन्यथा अधिक वर्बोस होगा। जब एक JSX एक्सप्रेशन को कंपाइल किया जाता है, तो इसे मानक जावास्क्रिप्ट फ़ंक्शन कॉल्स में बदल दिया जाता है।</p>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <p class="mb-4">उदाहरण के लिए, एक JSX एलिमेंट जैसे `<p>Hello, World!</p>` अंततः एक फ़ंक्शन कॉल जैसे `React.createElement('p', null, 'Hello, World!')` में बदल जाता है। यह प्रक्रिया स्वचालित रूप से Babel जैसे टूल के साथ होती है, जो अक्सर एक React प्रोजेक्ट में कॉन्फ़िगर किया जाता है।</p>
+                    <div class="border border-gray-200 rounded-lg p-4">
+                        <div id="jsx-example">
+                            <h3 class="font-semibold mb-2 text-gray-800">JSX कोड:</h3>
+                            <div class="code-block">&lt;p&gt;Hello, World!&lt;/p&gt;</div>
+                        </div>
+                        <div id="js-example" class="hidden mt-4">
+                             <h3 class="font-semibold mb-2 text-gray-800">कंपाइल किया गया जावास्क्रिप्ट:</h3>
+                             <div class="code-block">React.createElement('p', null, 'Hello, World!')</div>
+                        </div>
+                        <button id="toggle-compile" class="mt-4 px-4 py-2 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-colors">देखें यह कैसे कंपाइल होता है</button>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Key Concepts Section -->
+            <section id="key-concepts" class="content-section space-y-4">
+                <h2 class="text-3xl font-bold text-gray-900">मुख्य अवधारणाएँ</h2>
+                <p>JSX कुछ शक्तिशाली अवधारणाओं पर आधारित है जो React विकास को कुशल और प्रभावी बनाती हैं। नीचे दिए गए टैब पर क्लिक करके प्रत्येक के बारे में जानें।</p>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex border-b border-gray-200">
+                        <button class="concept-tab active-tab py-2 px-4 font-semibold text-green-600 border-b-2 border-green-600" data-target="declarative-ui">घोषणात्मक UI</button>
+                        <button class="concept-tab py-2 px-4 font-semibold text-gray-500" data-target="embedding-expressions">एक्सप्रेशंस एम्बेड करना</button>
+                        <button class="concept-tab py-2 px-4 font-semibold text-gray-500" data-target="attribute-differences">एट्रिब्यूट अंतर</button>
+                    </div>
+                    <div id="declarative-ui" class="concept-content mt-4">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">घोषणात्मक UI</h3>
+                        <p>JSX आपके यूजर इंटरफेस का वर्णन करने का एक घोषणात्मक तरीका है। UI को कदम-दर-कदम बनाने के तरीके का वर्णन करने वाले कोड लिखने के बजाय, आप बस यह घोषित करते हैं कि UI कैसा दिखना चाहिए। यह आपको दिए गए डेटा के एक सेट के लिए अपने UI की अंतिम स्थिति पर ध्यान केंद्रित करने की अनुमति देता है, और React इसे कुशलतापूर्वक अपडेट करने का काम करता है।</p>
+                    </div>
+                    <div id="embedding-expressions" class="concept-content hidden mt-4">
+                         <h3 class="text-xl font-semibold text-gray-800 mb-2">एक्सप्रेशंस एम्बेड करना</h3>
+                        <p>आप किसी भी वैध जावास्क्रिप्ट एक्सप्रेशन को कर्ली ब्रेसिज़ `{}` का उपयोग करके सीधे JSX के अंदर एम्बेड कर सकते हैं। यह एक शक्तिशाली विशेषता है जो आपको डायनेमिक सामग्री प्रदर्शित करने, गणना करने, या शर्तों के आधार पर विभिन्न तत्वों को प्रस्तुत करने की अनुमति देती है। उदाहरण के लिए, आप एक चर का मान प्रदर्शित कर सकते हैं या मार्कअप के भीतर एक फ़ंक्शन को कॉल कर सकते हैं।</p>
+                        <div class="code-block mt-2">const name = 'User';
+const element = &lt;h1&gt;Hello, {name}!&lt;/h1&gt;;</div>
+                    </div>
+                    <div id="attribute-differences" class="concept-content hidden mt-4">
+                         <h3 class="text-xl font-semibold text-gray-800 mb-2">एट्रिब्यूट अंतर</h3>
+                        <p>हालांकि JSX HTML जैसा दिखता है, आरक्षित जावास्क्रिप्ट कीवर्ड के साथ टकराव से बचने के लिए एट्रिब्यूट्स को कैसे संभाला जाता है, इसमें महत्वपूर्ण अंतर हैं। उदाहरण के लिए, HTML में `class` एट्रिब्यूट JSX में `className` बन जाता है। इसी तरह, `for` `htmlFor` बन जाता है। यह इवेंट हैंडलर्स पर भी लागू होता है, जिन्हें कैमलकेस का उपयोग करके नामित किया जाता है (जैसे, `onclick` के बजाय `onClick`)।</p>
+                         <div class="code-block mt-2">&lt;div className="my-class"&gt;Content&lt;/div&gt;</div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Rules of JSX Section -->
+            <section id="rules" class="content-section space-y-4">
+                <h2 class="text-3xl font-bold text-gray-900">JSX के नियम</h2>
+                <p>सुसंगत और त्रुटि-मुक्त कोड सुनिश्चित करने के लिए JSX के कुछ सरल नियम हैं। प्रत्येक नियम के बारे में अधिक जानने के लिए नीचे दिए गए कार्डों पर क्लिक करें।</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="rule-card bg-white p-6 rounded-lg shadow-md cursor-pointer hover:shadow-lg hover:-translate-y-1 transition-all">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">1. सिंगल रूट एलिमेंट</h3>
+                        <p class="rule-description hidden">प्रत्येक JSX एक्सप्रेशन में एक सिंगल टॉप-लेवल एलिमेंट होना चाहिए। इसका मतलब है कि आप कई आसन्न तत्वों को एक पैरेंट कंटेनर, जैसे `<div>`, `<section>`, या एक `React.Fragment` में लपेटे बिना वापस नहीं कर सकते।</p>
+                    </div>
+                    <div class="rule-card bg-white p-6 rounded-lg shadow-md cursor-pointer hover:shadow-lg hover:-translate-y-1 transition-all">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">2. एट्रिब्यूट्स के लिए कैमलकेस</h3>
+                        <p class="rule-description hidden">JSX में सभी एट्रिब्यूट्स कैमलकेस में लिखे जाते हैं, जैसे `onClick`, `tabIndex`, और `maxLength`। यह जावास्क्रिप्ट में गुणों और विधियों के लिए उपयोग किए जाने वाले मानक नामकरण सम्मेलनों के साथ संरेखित होता है।</p>
+                    </div>
+                    <div class="rule-card bg-white p-6 rounded-lg shadow-md cursor-pointer hover:shadow-lg hover:-translate-y-1 transition-all">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">3. सेल्फ-क्लोजिंग टैग्स</h3>
+                        <p class="rule-description hidden">यदि किसी तत्व के कोई बच्चे नहीं हैं, तो आपको टैग के अंत में एक फॉरवर्ड स्लैश के साथ इसे बंद करना होगा (जैसे, `<img />` या `<input />`)। यह XML में पाए जाने वाले सेल्फ-क्लोजिंग टैग्स के समान है।</p>
+                    </div>
+                    <div class="rule-card bg-white p-6 rounded-lg shadow-md cursor-pointer hover:shadow-lg hover:-translate-y-1 transition-all">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">4. सुरक्षा और इंजेक्शन</h3>
+                        <p class="rule-description hidden">डिफ़ॉल्ट रूप से, JSX किसी भी एम्बेडेड मान को सैनिटाइज और एस्केप करता है। यह संभावित रूप से दुर्भावनापूर्ण सामग्री को प्रस्तुत करने से पहले एक स्ट्रिंग में परिवर्तित करके क्रॉस-साइट स्क्रिप्टिंग (XSS) हमलों को रोकने में मदद करता है।</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Components in JSX Section -->
+            <section id="components" class="content-section space-y-4">
+                <h2 class="text-3xl font-bold text-gray-900">JSX में कंपोनेंट्स</h2>
+                <p>JSX React कंपोनेंट्स के साथ काम करने का एक मौलिक हिस्सा है। जब आप एक कंपोनेंट लिखते हैं, तो आप JSX का उपयोग करके उसके आउटपुट को परिभाषित करते हैं। आप कई कंपोनेंट्स को एक दूसरे के JSX के अंदर एक कंपोनेंट के टैग को शामिल करके भी कंपोज कर सकते हैं, उन्हें बिल्ट-इन HTML एलिमेंट्स की तरह मानते हुए। यह मॉड्यूलर और पुन: प्रयोज्य यूजर इंटरफेस बनाने का एक मुख्य पहलू है।</p>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Props</h3>
+                    <p>जब एक कंपोनेंट को JSX में शामिल किया जाता है, तो आप एट्रिब्यूट्स का उपयोग करके उसे डेटा पास कर सकते हैं। इन एट्रिब्यूट्स को "props" (गुणों के लिए छोटा) कहा जाता है और यह आपको एक कंपोनेंट के व्यवहार या उपस्थिति को अनुकूलित करने की अनुमति देता है।</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const mobileNav = document.getElementById('mobile-nav');
+            const contentSections = document.querySelectorAll('.content-section');
+            const toggleButton = document.getElementById('toggle-compile');
+            const conceptTabs = document.querySelectorAll('.concept-tab');
+            const conceptContents = document.querySelectorAll('.concept-content');
+            const ruleCards = document.querySelectorAll('.rule-card');
+        
+            function setActiveSection(hash) {
+                const targetHash = hash || '#intro';
+                
+                navLinks.forEach(link => {
+                    if (link.getAttribute('href') === targetHash) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+
+                contentSections.forEach(section => {
+                    if ('#' + section.id === targetHash) {
+                        section.classList.add('active');
+                    } else {
+                        section.classList.remove('active');
+                    }
+                });
+
+                if (mobileNav.value !== targetHash) {
+                    mobileNav.value = targetHash;
+                }
+            }
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetHash = this.getAttribute('href');
+                    setActiveSection(targetHash);
+                    history.pushState(null, null, targetHash);
+                });
+            });
+            
+            mobileNav.addEventListener('change', function() {
+                const targetHash = this.value;
+                setActiveSection(targetHash);
+                history.pushState(null, null, targetHash);
+            });
+
+            window.addEventListener('popstate', function() {
+                setActiveSection(location.hash);
+            });
+
+            setActiveSection(location.hash || '#intro');
+
+            toggleButton.addEventListener('click', function() {
+                const jsExample = document.getElementById('js-example');
+                const isHidden = jsExample.classList.contains('hidden');
+                jsExample.classList.toggle('hidden');
+                this.textContent = isHidden ? 'JSX कोड छुपाएं' : 'देखें यह कैसे कंपाइल होता है';
+            });
+
+            conceptTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    conceptTabs.forEach(t => {
+                        t.classList.remove('active-tab', 'text-green-600', 'border-green-600');
+                        t.classList.add('text-gray-500');
+                    });
+                    this.classList.add('active-tab', 'text-green-600', 'border-green-600');
+                    this.classList.remove('text-gray-500');
+                    
+                    const targetId = this.getAttribute('data-target');
+                    conceptContents.forEach(content => {
+                        if (content.id === targetId) {
+                            content.classList.remove('hidden');
+                        } else {
+                            content.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+
+            ruleCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const description = this.querySelector('.rule-description');
+                    const isVisible = !description.classList.contains('hidden');
+                    if (isVisible) {
+                        description.classList.add('hidden');
+                        this.classList.remove('bg-green-50');
+                    } else {
+                        document.querySelectorAll('.rule-description').forEach(d => d.classList.add('hidden'));
+                        document.querySelectorAll('.rule-card').forEach(c => c.classList.remove('bg-green-50'));
+                        description.classList.remove('hidden');
+                        this.classList.add('bg-green-50');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
