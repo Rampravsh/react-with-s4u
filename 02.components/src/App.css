@@ -32,11 +32,21 @@
     animation: logo-spin infinite 20s linear;
   }
 }
-
-.card {
-  padding: 2em;
-}
-
 .read-the-docs {
   color: #888;
+}
+.Square {
+  width: 300px;
+  height: 120px;
+  background-color: #61dafb;
+  margin: 0 auto;
+  transition: border-radius 1s;
+  border-radius: 5px;
+
+}
+.Square:hover {
+  border-radius: 50%;
+}
+.Square:active {
+  background-color: #21a1f1;
 }

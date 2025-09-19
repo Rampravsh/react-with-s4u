@@ -66,3 +66,32 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+.card {
+  background: #1e1e1e;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3);
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+}
+.card img {
+  border-radius: 12px;
+  max-width: 100%;
+  height: auto;
+}
+.card h2 {
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+.card p {
+  color: #ccc;
+  line-height: 1.6;
+}
+.card button {
+  margin-top: 15px;
+  background-color: #646cff;
+  color: white;
+}
+.card button:hover {
+  background-color: #535bf2;
+}
