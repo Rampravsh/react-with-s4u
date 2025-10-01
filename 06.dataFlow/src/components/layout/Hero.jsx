@@ -1,8 +1,9 @@
 import React from 'react'
 
-const Hero = () => {
+const Hero = (props) => {
+  console.log(props)
   return (
-    <div className='bg-gray-400'>Hero</div>
+    <div className='bg-gray-400'>Hero{props.data.data}</div>
   )
 }
 

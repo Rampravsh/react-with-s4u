@@ -1,8 +1,8 @@
 import React from 'react'
 
-const About = () => {
+const About = (props) => {
   return (
-    <div className='bg-gray-400 mt-2'>About</div>
+    <div className='bg-gray-400 mt-2'>About {props.data}</div>
   )
 }
 
