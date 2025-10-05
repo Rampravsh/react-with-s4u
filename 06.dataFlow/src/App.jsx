@@ -3,6 +3,7 @@ import Footer from "./components/Footer";
 import Headers from "./components/Header";
 import Layout from "./components/Layout";
 
+
 const App = () => {
   const [data, setData] = useState(
     <div className="text-xl text-blue-700"> ye app se aa raha hai</div>
