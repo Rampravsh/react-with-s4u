@@ -1,5 +1,5 @@
 import React from "react";
-import Card from "./components/card";
+import Card from "./components/Card";
 import data from "./assets/MOCK_DATA (1).json";
 
 const App = () => {
