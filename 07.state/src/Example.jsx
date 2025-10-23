@@ -12,13 +12,13 @@ const Example = () => {
     setcount((prev) => {
       prev = prev + 1;
       console.log(prev);
-      return prev ;
+      return prev;
     });
     // console.log(count);
     // setcount((prev) => prev + 1);
     // setcount((prev) => prev + 1);
     // setcount((prev) => prev + 1);
-    console.log(count);
+    console.log("out side bala", count);
   }
   return (
     <div>
