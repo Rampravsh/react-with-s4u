@@ -19,9 +19,10 @@ function App() {
   //   console.log(e);
   //   console.log("submit ho gya ");
   // }
-  function parentHandler(e) {
+  function parentHandler(e, name) {
     console.log(e);
     console.log("parent pe click hua hai");
+    console.log(name);
   }
   function childHandler(e) {
     e.stopPropagation();
@@ -32,7 +33,7 @@ function App() {
   return (
     <>
       <div
-        onClick={parentHandler}
+        onClick={(e) => parentHandler(e, "rampravesh")}
         style={{ backgroundColor: "blue", padding: "100px" }}
       >
         Parent Click
