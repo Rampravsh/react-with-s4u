@@ -1,5 +1,4 @@
-
-import React from 'react';
+import React from "react";
 
 // 1. Using if/else
 function IfElseExample({ isLoggedIn }) {
@@ -12,11 +11,7 @@ function IfElseExample({ isLoggedIn }) {
 
 // 2. Using ternary operator
 function TernaryExample({ isLoggedIn }) {
-  return (
-    <div>
-      {isLoggedIn ? <p>Welcome back!</p> : <p>Please log in.</p>}
-    </div>
-  );
+  return <div>{isLoggedIn ? <p>Welcome back!</p> : <p>Please log in.</p>}</div>;
 }
 
 // 3. Using logical && operator
@@ -33,11 +28,11 @@ function LogicalAndExample({ unreadMessages }) {
 // 4. Using switch statement
 function SwitchExample({ userStatus }) {
   switch (userStatus) {
-    case 'active':
+    case "active":
       return <p>Your account is active.</p>;
-    case 'inactive':
+    case "inactive":
       return <p>Your account is inactive.</p>;
-    case 'pending':
+    case "pending":
       return <p>Your account is pending approval.</p>;
     default:
       return <p>Welcome!</p>;
@@ -55,9 +50,8 @@ function EnumExample({ userStatus }) {
   return <div>{statusComponents[userStatus] || <p>Welcome!</p>}</div>;
 }
 
-
 export default function ConditionalRenderingExamples() {
-    const unreadMessages = ['a', 'b', 'c'];
+  const unreadMessages = ["a", "b", "c"];
   return (
     <div>
       <h1>Conditional Rendering Examples</h1>
