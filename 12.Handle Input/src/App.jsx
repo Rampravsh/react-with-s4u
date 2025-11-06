@@ -20,17 +20,32 @@ function App() {
   const [data, setData] = useState({
     name: "",
     email: "",
+    phoneNumber: "",
   });
-  function nameHandler(e) {
-    setData({ ...data, name: e.target.value });
+  // function nameHandler(e) {
+  // console.log(e.target.name);
+  //   setData({ ...data, name: e.target.value });
+  // }
+  // function emailHandler(e) {
+  // console.log(e.target.name);
+  //   setData({ ...data, email: e.target.value });
+  // }
+
+  function inputHandler(e) {
+    const { name, value } = e.target;
+    setData((prev) => {
+      return {
+        ...prev,
+        [name]: value,
+      };
+    });
   }
-  function emailHandler(e) {
-    setData({ ...data, email: e.target.value });
-  }
+
   function clearData() {
     setData({
       name: "",
       email: "",
+      phoneNumber: "",
     });
   }
   return (
@@ -41,16 +56,26 @@ function App() {
       <div>
         <input
           type="text"
+          name="name"
           value={data.name}
-          onChange={(e) => nameHandler(e)}
+          onChange={(e) => inputHandler(e)}
           placeholder="Enter Name..."
           className="border-amber-50 border-2 rounded-2xl p-5 m-10"
         />
         <input
           type="text"
+          name="email"
           value={data.email}
-          onChange={(e) => emailHandler(e)}
+          onChange={(e) => inputHandler(e)}
           placeholder="Enter Email..."
+          className="border-amber-50 border-2 rounded-2xl p-5 m-10"
+        />
+        <input
+          type="number"
+          name="phoneNumber"
+          value={data.phoneNumber}
+          onChange={(e) => inputHandler(e)}
+          placeholder="Enter phoneNumber..."
           className="border-amber-50 border-2 rounded-2xl p-5 m-10"
         />
         <button
@@ -61,6 +86,7 @@ function App() {
         </button>
         <div className="text-xl">your name :{data.name}</div>
         <div className="text-xl">your email : {data.email}</div>
+        <div className="text-xl">your phoneNumber : {data.phoneNumber}</div>
       </div>
 
       {/* multiple input fields with multiple state */}
