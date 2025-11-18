@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 const PracticeOnRadio = () => {
-  const [method, setMethod] = useState("");
+  const [method, setMethod] = useState({});
   const payments = [
     { id: "UPI", info: "Instant transfer via UPI apps" },
     { id: "Card", info: "Pay using creadit or debit card" },
@@ -28,9 +28,9 @@ const PracticeOnRadio = () => {
               <input
                 type="radio"
                 name="method"
-                checked={method === item.id}
+                checked={method.id === item.id}
                 id={item.id}
-                onChange={() => setMethod(item.id)}
+                onChange={() => setMethod(item)}
                 className="form-radio h-5 w-5 text-blue-600 border-gray-300 focus:ring-blue-500 mr-3"
               />
               <span className="text-lg font-medium text-gray-800">
@@ -40,10 +40,8 @@ const PracticeOnRadio = () => {
           ))}
         </div>
         <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200 text-blue-800 text-center min-h-[60px] flex items-center justify-center">
-          {method ? (
-            <p className="text-md font-semibold">
-              {payments.find((p) => p.id === method)?.info}
-            </p>
+          {Object.keys(method).length !== 0 ? (
+            <p className="text-md font-semibold">{method.info}</p>
           ) : (
             <p className="text-md text-gray-500">
               Select a payment method to see details.
