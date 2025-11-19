@@ -1,0 +1,35 @@
+const data = {
+  India: ["delhi", "mumbai"],
+  USA: ["newyork", "washington"],
+  Australia: ["melbourne", "sydney"],
+  Canada: ["toronto", "vancouver"],
+  Germany: ["berlin", "munich"],
+  France: ["paris", "marseille"],
+  Japan: ["tokyo", "kyoto"],
+  Brazil: ["rio de janeiro", "sao paulo"],
+  China: ["beijing", "shanghai"],
+  Mexico: ["mexico city", "guadalajara", "monterrey", "puebla", "tijuana"],
+  UK: ["london", "manchester", "birmingham", "glasgow", "liverpool"],
+  Italy: ["rome", "milan", "naples", "turin", "palermo"],
+  Spain: ["madrid", "barcelona", "valencia", "seville", "zaragoza"],
+  Argentina: ["buenos aires", "cordoba", "rosario", "mendoza", "la plata"],
+  SouthAfrica: [
+    "cape town",
+    "johannesburg",
+    "durban",
+    "pretoria",
+    "port elizabeth",
+  ],
+  Egypt: ["cairo", "alexandria", "giza", "shubra el kheima", "port said"],
+  NewZealand: [
+    "auckland",
+    "wellington",
+    "christchurch",
+    "hamilton",
+    "tauranga",
+  ],
+  Sweden: ["stockholm", "gothenburg", "malmö", "uppsala", "västerås"],
+  Mexico: ["mexico city", "guadalajara"],
+};
+
+export default data;

@@ -3,9 +3,10 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
 import SelectDropdownMap from "./SelectDropdownMap.jsx";
+import DependentSelect from "./DependentSelect.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <SelectDropdownMap />
+    <DependentSelect />
   </StrictMode>
 );
