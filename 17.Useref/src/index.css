@@ -7,3 +7,10 @@ body {
   align-items: center;
   height: 100vh; */
 }
+
+button{
+  padding: 4px;
+  border-radius: 10px;
+  background-color: aliceblue;
+  color: black;
+}
