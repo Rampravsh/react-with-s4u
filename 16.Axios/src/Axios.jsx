@@ -4,16 +4,16 @@ import React from "react";
 const Axios = () => {
   const config = {
     url: "https://jsonplaceholder.typicode.com/users",
-    // headers: {
-    //   //   "Content-Type": "appliction/json",
-    //   Accept: "application/json",
-    //   Authorization: "Barer fklsdfkljsdkl",
-    // },
+    headers: {
+      // "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: "Barer fklsdfkljsdkl",
+    },
     // timeout: "100",
-    // params: {
-    //   name: "rampravesh kumar",
-    //   age: 20,
-    // },
+    params: {
+      name: "rampravesh kumar",
+      age: 20,
+    },
     // data: {
     //   name: "ram",
     // },

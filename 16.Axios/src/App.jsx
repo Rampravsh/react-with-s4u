@@ -1,11 +1,11 @@
 import axios from "axios";
 
 function App() {
-  const fetchData = async () => {
-    const res = await fetch("http://jsonplaceholder.typicode.com/users",);
-    const data = await res.json();
-    console.log(data);
-  };
+  // const fetchData = async () => {
+  //   const res = await fetch("http://jsonplaceholder.typicode.com/users",);
+  //   const data = await res.json();
+  //   console.log(data);
+  // };
 
   // const fetchData = async () => {
   //   const data = await axios.get("http://jsonplaceholder.typicode.com/users");
