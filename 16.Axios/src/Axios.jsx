@@ -21,6 +21,10 @@ const Axios = () => {
       method: "post",
       data: userDetails,
     });
+    setUserDetails({
+      name: "",
+      age: "",
+    });
     fetchData();
     console.log(response);
   };
