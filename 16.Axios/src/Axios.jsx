@@ -39,6 +39,26 @@ const Axios = () => {
     });
   };
 
+  const editData = async () => {
+    const response = await axios({
+      url: `https://699451fafade7a9ec0f50362.mockapi.io/api/v1/user/${userDetails.id}`,
+      method: "put",
+      data: userDetails,
+    });
+    setUserDetails({
+      name: "",
+      age: "",
+    });
+    fetchData();
+  };
+  const deleteData = async (data) => {
+    await axios({
+      url: `https://699451fafade7a9ec0f50362.mockapi.io/api/v1/user/${data.id}`,
+      method: "delete",
+    });
+    fetchData();
+  };
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -46,12 +66,12 @@ const Axios = () => {
   // console.log(userDetails);
   return (
     <div>
-      <button
+      {/* <button
         className="bg-red-400 p-4 mt-6 rounded-2xl mx-4"
         onClick={fetchData}
       >
         Fetch Data
-      </button>
+      </button> */}
 
       <input
         type="text"
@@ -67,19 +87,45 @@ const Axios = () => {
         value={userDetails.age}
         onChange={handleForm}
       />
-      <button className="bg-red-400 p-4 mt-6 rounded-2xl " onClick={postData}>
-        Post Data
-      </button>
+
+      {userDetails.editData ? (
+        <button
+          className="bg-green-400 p-4 mt-6 rounded-2xl "
+          onClick={editData}
+        >
+          edit Data
+        </button>
+      ) : (
+        <button className="bg-red-400 p-4 mt-6 rounded-2xl " onClick={postData}>
+          Post Data
+        </button>
+      )}
 
       {users.map((data) => {
         return (
           <div
-            className="bg-gray-700 p-6 rounded-2xl my-2 mx-2 w-fit"
+            className="bg-gray-700 p-6 rounded-2xl my-2 mx-2 w-fit flex flex-col"
             key={data.id}
           >
             <div>id: {data.id} </div>
             <div>name: {data.name} </div>
             <div>age: {data.age} </div>
+            <button
+              onClick={() => {
+                setUserDetails({ ...data, editData: true });
+              }}
+              className="bg-green-400 p-2 rounded-xl mt-2"
+            >
+              edit data
+            </button>
+            <button
+              onClick={() => {
+                deleteData(data);
+              }}
+              className="bg-red-400 p-2 rounded-xl mt-2"
+            >
+              delete data
+            </button>
           </div>
         );
       })}
