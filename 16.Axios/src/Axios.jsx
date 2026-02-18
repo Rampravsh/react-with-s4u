@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const Axios = () => {
@@ -19,10 +19,9 @@ const Axios = () => {
     const response = await axios({
       url: "https://699451fafade7a9ec0f50362.mockapi.io/api/v1/user",
       method: "post",
-      data: {
-        ...userDetails,
-      },
+      data: userDetails,
     });
+    fetchData();
     console.log(response);
   };
 
@@ -35,6 +34,10 @@ const Axios = () => {
       };
     });
   };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   // console.log(userDetails);
   return (
