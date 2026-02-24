@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { axionsInstance } from "./axios";
 
 const Axios = () => {
   const [users, setUsers] = useState([]);
@@ -65,6 +66,8 @@ const Axios = () => {
     });
     fetchData();
   };
+
+
   const deleteData = async (data) => {
     await axios({
       url: `https://699451fafade7a9ec0f50362.mockapi.io/api/v1/user/${data.id}`,
