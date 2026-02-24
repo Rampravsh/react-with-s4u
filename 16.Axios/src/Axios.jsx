@@ -7,6 +7,7 @@ const Axios = () => {
     name: "",
     age: "",
   });
+
   const fetchData = async () => {
     const response = await axios({
       url: "https://699451fafade7a9ec0f50362.mockapi.io/api/v1/user",
@@ -16,17 +17,30 @@ const Axios = () => {
   };
 
   const postData = async () => {
-    const response = await axios({
-      url: "https://699451fafade7a9ec0f50362.mockapi.io/api/v1/user",
-      method: "post",
-      data: userDetails,
-    });
+    // const response = await axios({
+    //   url: "https://699451fafade7a9ec0f50362.mockapi.io/api/v1/user",
+    //   method: "post",
+    //   data: userDetails,
+    // });
+
+    await axios.post(
+      "https://699451fafade7a9ec0f50362.mockapi.io/api/v1/user",
+      userDetails,
+      {
+        onUploadProgress: (progress) => {
+          console.log(progress);
+          const percent = (progress.loaded / progress.total) * 100;
+          console.log(percent);
+        },
+      },
+    ); 
+
     setUserDetails({
       name: "",
       age: "",
     });
     fetchData();
-    console.log(response);
+    // console.log(response);
   };
 
   const handleForm = (e) => {
@@ -59,7 +73,29 @@ const Axios = () => {
     fetchData();
   };
 
+  // const head = async () => {
+  //   const response = await axios.head({
+  //     url: "https://699451fafade7a9ec0f50362.mockapi.io/api/v1/user",
+  //   });
+  //   console.log(response);
+  // };
+  // head();
+
   useEffect(() => {
+    axios.interceptors.request.use(
+      (config) => {
+        console.log("request config : ", config.headers);
+        return config;
+      },
+      (err) => {
+        console.log("global err: ", err);
+      },
+    );
+
+    axios.interceptors.response.use((config) => {
+      console.log("response config: ", config);
+      return config;
+    });
     fetchData();
   }, []);
 
