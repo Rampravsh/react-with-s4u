@@ -2,4 +2,14 @@
 body {
   background-color: black;
   color: white;
+
+}
+
+a {
+  color: rgb(28, 28, 223);
+  text-decoration: underline;
+}
+a:hover{
+  color: red;
+  cursor: pointer;
 }
