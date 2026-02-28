@@ -3,3 +3,11 @@ body {
   background-color: black;
   color: white;
 }
+
+.page{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
