@@ -1,18 +1,11 @@
 @import "tailwindcss";
 body {
-  background-color: black;
+  background-color: rgb(57, 59, 61);
   color: white;
 
 }
 
-a {
-  color: rgb(28, 28, 223);
-  text-decoration: underline;
-}
-a:hover{
-  color: red;
-  cursor: pointer;
-}
+
 .page{
   width: 100vw;
   height: 100vh;
