@@ -21,16 +21,19 @@ const router = createBrowserRouter([
       {
         path: "about",
         element: <About />,
+        loader: () => {
+          return fetch("https://jsonplaceholder.typicode.com/users");
+        },
       },
       {
         path: "contact",
         element: <Contact />,
-        children:[
+        children: [
           {
-            path:':id',
-            element:<ContactId />
-          }
-        ]
+            path: ":id",
+            element: <ContactId />,
+          },
+        ],
       },
       {
         path: "*",
