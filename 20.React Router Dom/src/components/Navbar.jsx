@@ -1,7 +1,16 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const isLoggedIn = true;
+  const handleClick = () => {
+    if (isLoggedIn) {
+      navigate("/about");
+    }
+  };
+
+  const arr = ["a", "b", "c", "d"];
   return (
     <>
       <nav className="flex justify-around w-full bg-gray-800 p-4">
@@ -37,7 +46,21 @@ const Navbar = () => {
         >
           Help
         </NavLink>
+        {arr.map((item) => {
+          return (
+            <NavLink
+              key={item}
+              to={`/contact/${item}`}
+              className={({ isActive }) =>
+                isActive ? "text-green-500" : "text-white"
+              }
+            >
+            {item}
+            </NavLink>
+          );
+        })}
       </nav>
+      <button onClick={handleClick}>Navigate to About</button>
     </>
   );
 };
