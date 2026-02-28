@@ -6,6 +6,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./components/Home.jsx";
 import About from "./components/About.jsx";
 import Contact from "./components/Contact.jsx";
+import NotFound from "./components/NotFound.jsx";
+import ContactId from "./components/ContactId.jsx";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +25,16 @@ const router = createBrowserRouter([
       {
         path: "contact",
         element: <Contact />,
+        children:[
+          {
+            path:':id',
+            element:<ContactId />
+          }
+        ]
+      },
+      {
+        path: "*",
+        element: <NotFound />,
       },
     ],
   },
