@@ -1,9 +1,13 @@
-import React from 'react'
+import React from "react";
+import { Outlet } from "react-router-dom";
 
 const About = () => {
   return (
-    <div className='page'>About</div>
-  )
-}
+    <div>
+      <div>About</div>
+      <Outlet />
+    </div>
+  );
+};
 
-export default About
+export default About;
