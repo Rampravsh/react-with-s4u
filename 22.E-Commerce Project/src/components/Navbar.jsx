@@ -16,38 +16,10 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-8">
-            <NavLink
-              to="/"
-              className={({ isActive }) =>
-                `text-sm font-medium transition-colors duration-200 hover:text-indigo-600 ${
-                  isActive ? "text-indigo-600" : "text-gray-600"
-                }`
-              }
-            >
-              Home
-            </NavLink>
-            <NavLink
-              to="/product"
-              className={({ isActive }) =>
-                `text-sm font-medium transition-colors duration-200 hover:text-indigo-600 ${
-                  isActive ? "text-indigo-600" : "text-gray-600"
-                }`
-              }
-            >
-              Products
-            </NavLink>
-            <NavLink
-              to="/about"
-              className="text-sm font-medium text-gray-600 hover:text-indigo-600 transition-colors"
-            >
-              About
-            </NavLink>
-            <NavLink
-              to="/contact"
-              className="text-sm font-medium text-gray-600 hover:text-indigo-600 transition-colors"
-            >
-              Contact
-            </NavLink>
+            <Menus to={"/"} title={"Home"} />
+            <Menus to={"/product"} title={"Product"} />
+            <Menus to={"/about"} title={"About"} />
+            <Menus to={"/contact"} title={"Contact"} />
           </div>
 
           {/* Icons & Mobile Menu */}
@@ -71,6 +43,21 @@ const Navbar = () => {
         </div>
       </div>
     </nav>
+  );
+};
+
+const Menus = ({ to, title }) => {
+  return (
+    <NavLink
+      to={to}
+      className={({ isActive }) =>
+        `text-sm font-medium transition-colors duration-200 hover:text-indigo-600 ${
+          isActive ? "text-indigo-600" : "text-gray-600"
+        }`
+      }
+    >
+      {title}
+    </NavLink>
   );
 };
 
