@@ -6,6 +6,8 @@ import Home from "./components/Home.jsx";
 import Product from "./components/Product.jsx";
 import About from "./components/About.jsx";
 import Contact from "./components/Contact.jsx";
+import { fetchData, fetchProductById } from "./lib/api.js";
+import ProductDetail from "./components/ProductDetail.jsx";
 
 const router = createBrowserRouter([
   {
@@ -15,10 +17,17 @@ const router = createBrowserRouter([
       {
         path: "",
         element: <Home />,
+        loader: fetchData,
       },
       {
         path: "product",
         element: <Product />,
+        loader: fetchData,
+      },
+      {
+        path: "product/:id",
+        element: <ProductDetail />,
+        loader: fetchProductById,
       },
       {
         path: "about",
