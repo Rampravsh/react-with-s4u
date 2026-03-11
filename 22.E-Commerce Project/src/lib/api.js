@@ -6,7 +6,7 @@ export const fetchData = async () => {
 };
 
 export const fetchProductById = async ({ params }) => {
-  console.log(params);
+  // console.log(params);
   const response = await axios(
     `https://fakestoreapi.com/products/${params.id}`,
   );

@@ -18,7 +18,7 @@ const Product = () => {
             {products.map((product) => (
               <Link to={`/product/${product.id}`} key={product.id} className="group">
                 <div className="bg-white rounded-lg shadow-md overflow-hidden transform group-hover:scale-105 transition-transform duration-300">
-                  <img src={product.image} alt={product.title} className="w-full h-64 object-cover" />
+                  <img src={product.image} alt={product.title} className="w-full h-64 object-contain" />
                   <div className="p-4">
                     <h3 className="text-lg font-semibold text-gray-900 truncate">{product.title}</h3>
                     <p className="mt-2 text-xl font-bold text-gray-800">${product.price}</p>
