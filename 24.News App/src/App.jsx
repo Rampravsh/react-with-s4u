@@ -1,9 +1,16 @@
-import React from 'react'
+import React from "react";
+import Navbar from "./components/Navbar";
+import News from "./pages/News";
+import Category from "./components/Category";
 
 const App = () => {
   return (
-    <div>App</div>
-  )
-}
+    <>
+      <Navbar />
+      <Category />
+      <News />
+    </>
+  );
+};
 
-export default App
+export default App;
