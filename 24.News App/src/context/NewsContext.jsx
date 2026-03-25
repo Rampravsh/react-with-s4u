@@ -1,5 +1,6 @@
 import { createContext, useContext } from "react";
 import { useState } from "react";
+import { fetchNews } from "../feature/fetchNews";
 
 const NewsContext = createContext();
 
@@ -14,9 +15,13 @@ export const useNews = () => {
 export const NewsProvider = ({ children }) => {
   const [news, setNews] = useState([]);
 
-  return (
-    <NewsContext.Provider value={{ news, setNews }}>
-      {children}
-    </NewsContext.Provider>
-  );
+  // This function will be provided in the context to fetch and set news.
+  const fetchNewsInProvider = async (url) => {
+    const articles = await fetchNews(url);
+    setNews(articles);
+  };
+
+  const value = { news, setNews, fetchNews: fetchNewsInProvider };
+
+  return <NewsContext.Provider value={value}>{children}</NewsContext.Provider>;
 };

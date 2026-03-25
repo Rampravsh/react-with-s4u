@@ -1,22 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
+import LoadingImage from "./LoadingImage";
 
-const Card = (card) => {
+const Card = ({ card }) => {
+  const [imageLoaded, setImageLoaded] = useState(false);
+
   return (
     <>
       <div className="card bg-base-100 w-90 shadow-sm ">
         <figure className="px-10 pt-10">
-          <img
-            src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-            alt="Shoes"
-            className="rounded-xl"
-          />
+          {!imageLoaded && <LoadingImage />}
+          {card.urlToImage && (
+            <img
+              src={card.urlToImage}
+              alt={card.title}
+              className={`rounded-xl ${imageLoaded ? "block" : "hidden"}`}
+              onLoad={() => setImageLoaded(true)}
+            />
+          )}
         </figure>
         <div className="card-body items-center text-center">
-          <h2 className="card-title">Card Title</h2>
-          <p>
-            A card component has a figure, a body part, and inside body there
-            are title and actions parts
-          </p>
+          <h2 className="card-title">{card.title}</h2>
+          <p>{card.description}</p>
+          <div className="card-actions">
+            <button onClick={() => window.open(card.url, "_blank")} className="btn btn-primary">Read More</button>
+          </div>
         </div>
       </div>
     </>
