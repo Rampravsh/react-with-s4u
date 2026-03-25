@@ -7,8 +7,8 @@ const Navbar = () => {
       <header>
         <div className="navbar bg-base-100 shadow-sm">
           <div className="flex-1">
-            <a className="btn btn-ghost text-xl">
-              Rpk<span className="text-orange-600">.dev</span>
+            <a className="text-xl font-bold">
+              Rpk<span className="text-orange-500">.dev</span>
             </a>
           </div>
           <div className="flex gap-2">
