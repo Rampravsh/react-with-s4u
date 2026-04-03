@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 const Products = () => {
-  const state = useSelector((state) => state.products);
+  const state = useSelector((state) => state.productReducer.products);
   console.log(state);
   useEffect(() => {
     console.log("re render hua kya");
