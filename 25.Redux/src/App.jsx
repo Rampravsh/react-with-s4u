@@ -1,16 +1,30 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { addToProduct } from "./redux/reducer/productReducer";
+import { useDispatch } from "react-redux";
+import { addToCount, addToProduct } from "./redux/reducer/productReducer";
+import Products from "./components/Products";
 
 const App = () => {
-  const state = useSelector((state) => state.products);
   const dispatch = useDispatch();
-  console.log(state);
+
+  const handleAddToProduct = () => {
+    dispatch(
+      addToProduct({
+        id: 1,
+        name: "samsung",
+      }),
+    );
+  };
+  const handleAddToCount = () => {
+    dispatch(
+      addToCount(),
+    );
+  };
   return (
     <>
       <div>Hello❤️</div>
-      {/* <div>{state}</div> */}
-      <button onClick={() => dispatch(addToProduct())}>Click karo</button>
+      <Products />
+      <button onClick={handleAddToProduct}>Click karo</button>
+      <button onClick={handleAddToCount}>Click karo</button>
     </>
   );
 };
