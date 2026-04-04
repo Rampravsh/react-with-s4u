@@ -1,12 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 const CurrentWeather = () => {
-  const { current, loading, error } = useSelector(
-    (state) => state.weatherReducer
-  );
+  const current = useSelector((state) => state.weatherReducer.current);
+  const loading = useSelector((state) => state.weatherReducer.loading);
+  const error = useSelector((state) => state.weatherReducer.error);
   console.log(current);
-
 
   if (loading) return <div className="text-center p-10">Loading...</div>;
   if (error) return <div className="text-center p-10 text-error">{error}</div>;
@@ -21,7 +20,9 @@ const CurrentWeather = () => {
             src={`https://openweathermap.org/img/wn/${current.weather[0].icon}@4x.png`}
             alt={current.weather[0].description}
           />
-          <span className="text-6xl font-bold">{Math.round(current.main.temp)}°C</span>
+          <span className="text-6xl font-bold">
+            {Math.round(current.main.temp)}°C
+          </span>
         </div>
         <p className="text-xl capitalize">{current.weather[0].description}</p>
         <div className="flex gap-8 mt-6">
