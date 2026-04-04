@@ -12,7 +12,7 @@ const initialState = {
   forecast: null,
   loading: false,
   error: null,
-  city: "patna",
+  city: "Patna",
 };
 
 export const weatherReducer = (state = initialState, action) => {
@@ -49,5 +49,3 @@ export const weatherReducer = (state = initialState, action) => {
     return state;
   }
 };
-
-
