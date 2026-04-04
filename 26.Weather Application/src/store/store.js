@@ -1,9 +1,9 @@
 import { applyMiddleware, compose, createStore } from "redux";
-import { weatherReducer } from "./reducers/weatherReducers";
 import { thunk } from "redux-thunk";
+import rootReducer from ".";
 
 const store = createStore(
-  weatherReducer,
+  rootReducer,
   compose(
     applyMiddleware(thunk),
     window.__REDUX_DEVTOOLS_EXTENSION__ &&

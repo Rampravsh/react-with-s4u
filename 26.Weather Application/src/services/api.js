@@ -9,6 +9,7 @@ api.interceptors.request.use(
     config.params = {
       ...config.params,
       appid: import.meta.env.VITE_WEATHER_API,
+      units:"metric"
     };
     return config;
   },

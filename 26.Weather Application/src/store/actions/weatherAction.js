@@ -44,7 +44,7 @@ export const featchWeather = (city) => {
       dispatch(fetchWeatherPending());
       const response = await api.get(`weather?q=${city}`);
       dispatch(fetchCurrentSuccess(response.data));
-      console.log(response);
+      // console.log(response);
     } catch (error) {
       dispatch(fetchWeatherError(error.message));
     }
@@ -57,7 +57,7 @@ export const featchForcast = (city) => {
       dispatch(fetchWeatherPending());
       const response = await api.get(`forecast?q=${city}`);
       dispatch(fetchForcastSuccess(response.data.list));
-      console.log(response);
+      // console.log(response);
     } catch (error) {
       dispatch(fetchWeatherError(error.message));
     }
