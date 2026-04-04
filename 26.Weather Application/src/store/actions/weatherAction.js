@@ -1,3 +1,4 @@
+import api from "../../services/api";
 import {
   FEATCH_CURRENT_SUCCESS,
   FEATCH_FORCAST_SUCCESS,
@@ -37,7 +38,28 @@ export const setCity = (details) => {
   };
 };
 
+export const featchWeather = (city) => {
+  return async (dispatch) => {
+    try {
+      dispatch(fetchWeatherPending());
+      const response = await api.get(`weather?q=${city}`);
+      dispatch(fetchCurrentSuccess(response.data));
+      console.log(response);
+    } catch (error) {
+      dispatch(fetchWeatherError(error.message));
+    }
+  };
+};
 
-export const fetchWeather=()=>{
-    
-}
+export const featchForcast = (city) => {
+  return async (dispatch) => {
+    try {
+      dispatch(fetchWeatherPending());
+      const response = await api.get(`forecast?q=${city}`);
+      dispatch(fetchForcastSuccess(response.data.list));
+      console.log(response);
+    } catch (error) {
+      dispatch(fetchWeatherError(error.message));
+    }
+  };
+};

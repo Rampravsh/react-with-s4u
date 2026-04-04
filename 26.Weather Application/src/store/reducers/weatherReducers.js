@@ -51,7 +51,3 @@ export const weatherReducer = (state = initialState, action) => {
 };
 
 
-export const featchWeather =(city)=>{
-    const response=api.get(`?${city}`,{})
-    console.log(response)
-}

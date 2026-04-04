@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { featchWeather } from "./store/reducers/weatherReducers";
+import { featchForcast, featchWeather } from "./store/actions/weatherAction";
 
 const App = () => {
-  const dispatch=useDispatch()
+  const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(featchWeather("patna"))
-  }, [])
-  
+    dispatch(featchWeather("patna"));
+    dispatch(featchForcast("delhi"));
+  }, []);
+
   return <>app</>;
 };
 
