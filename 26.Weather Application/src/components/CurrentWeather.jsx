@@ -15,7 +15,7 @@ const CurrentWeather = () => {
     <div className="card bg-base-200 shadow-xl m-4 p-6">
       <div className="flex flex-col items-center">
         <h2 className="text-3xl font-bold capitalize">{current.name}</h2>
-        <div className="flex items-center gap-4">
+        <div className="flex flex-col md:flex-row items-center gap-4">
           <img
             src={`https://openweathermap.org/img/wn/${current.weather[0].icon}@4x.png`}
             alt={current.weather[0].description}
