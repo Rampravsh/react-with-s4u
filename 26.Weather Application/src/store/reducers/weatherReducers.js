@@ -1,3 +1,4 @@
+import api from "../../services/api";
 import {
   FEATCH_CURRENT_SUCCESS,
   FEATCH_FORCAST_SUCCESS,
@@ -48,3 +49,9 @@ export const weatherReducer = (state = initialState, action) => {
     return state;
   }
 };
+
+
+export const featchWeather =(city)=>{
+    const response=api.get(`?${city}`,{})
+    console.log(response)
+}

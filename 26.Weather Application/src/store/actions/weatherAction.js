@@ -36,3 +36,8 @@ export const setCity = (details) => {
     payload: details,
   };
 };
+
+
+export const fetchWeather=()=>{
+    
+}
