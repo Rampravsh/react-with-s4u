@@ -7,12 +7,16 @@ const initialState = {
   error: null,
 };
 
-export const featchUser = createAsyncThunk("user/featchUser", async () => {
-  const response = await axios({
-    url: "https://jsonplaceholder.typicode.com/users",
-  });
-  console.log(response);
-  return response.data;
+export const featchUser = createAsyncThunk("user/featchUser", async (payload,{rejectWithValue}) => {
+  try {
+    const response = await axios({
+      url: "https://jsonplaceholder.typicode.com/users",
+    });
+    //   console.log(response);
+    return response.data;
+  } catch (error) {
+    return rejectWithValue("something went wrong");
+  }
 });
 
 const userSlice = createSlice({
@@ -30,8 +34,9 @@ const userSlice = createSlice({
       state.user = action.payload;
     });
     addBuilder.addCase(featchUser.rejected, (state, action) => {
+        console.log(action);
       state.loading = false;
-      state.error = action.error;
+      state.error = action.payload;
     });
   },
 });
