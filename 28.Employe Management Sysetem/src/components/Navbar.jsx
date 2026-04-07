@@ -1,7 +1,8 @@
+import Layout from "./Layout";
 
 const Navbar = () => {
   return (
-    <div>
+    <Layout>
       <div className="navbar bg-base-100 shadow-sm">
         <div className="navbar-start">
           <div className="dropdown">
@@ -43,7 +44,9 @@ const Navbar = () => {
           </div>
         </div>
         <div className="navbar-center">
-          <a className="text-xl font-bold">Rpk<span className="text-amber-600">.dev</span></a>
+          <a className="text-xl font-bold">
+            Rpk<span className="text-amber-600">.dev</span>
+          </a>
         </div>
         <div className="navbar-end">
           <button className="btn btn-ghost btn-circle">
@@ -85,7 +88,7 @@ const Navbar = () => {
           </button>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 
