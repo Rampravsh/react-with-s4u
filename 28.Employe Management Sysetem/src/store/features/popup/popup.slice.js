@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   editPopup: false,
-  deletePopup: false,
+  deletePopup: true,
 };
 
 export const popupSlice = createSlice({
@@ -16,12 +16,19 @@ export const popupSlice = createSlice({
       state.editPopup = false;
     },
     openDeletePopup: (state, action) => {
-      state.editPopup = action.payload ?? true;
+      state.deletePopup = action.payload ?? true;
     },
     closeDeletePopup: (state, action) => {
-      state.editPopup = false;
+      state.deletePopup = false;
     },
   },
 });
+
+export const {
+  openDeletePopup,
+  openEditPopup,
+  closeDeletePopup,
+  closeEditPopup,
+} = popupSlice.actions;
 
 export default popupSlice.reducer;

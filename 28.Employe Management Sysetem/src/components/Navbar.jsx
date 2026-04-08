@@ -1,7 +1,10 @@
 import { FaPlus } from "react-icons/fa";
 import Layout from "./Layout";
+import { useDispatch } from "react-redux";
+import { openEditPopup } from "../store/features/popup/popup.slice";
 
 const Navbar = () => {
+  const dispatch = useDispatch();
   return (
     <div className="sticky top-0 z-10">
       <Layout>
@@ -51,7 +54,10 @@ const Navbar = () => {
             </a>
           </div>
           <div className="navbar-end">
-            <button className="btn btn-ghost btn-circle">
+            <button
+              onClick={() => dispatch(openEditPopup())}
+              className="btn btn-ghost btn-circle"
+            >
               <FaPlus />
             </button>
             <button className="btn btn-ghost btn-circle">
