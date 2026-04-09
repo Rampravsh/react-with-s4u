@@ -2,13 +2,15 @@ import React from "react";
 import Layout from "./Layout";
 import { MdDeleteOutline } from "react-icons/md";
 import { FaEdit, FaRegHeart } from "react-icons/fa";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   openDeletePopup,
   openEditPopup,
 } from "../store/features/popup/popup.slice";
 
 const List = () => {
+  const { employees, loading, error } = useSelector((state) => state.employee);
+  console.log(employees, loading, error);
   return (
     <Layout>
       <div className="min-h-screen mt-10">
@@ -16,17 +18,16 @@ const List = () => {
           <li className="p-4 pb-2 text-xs opacity-60 tracking-wide">
             Most played songs this week
           </li>
-          <SingleList />
-          <SingleList />
-          <SingleList />
-          <SingleList />
+          {employees.map((item) => (
+            <SingleList key={item.id} item={item} />
+          ))}
         </ul>
       </div>
     </Layout>
   );
 };
 
-const SingleList = () => {
+const SingleList = ({ item }) => {
   const dispatch = useDispatch();
   return (
     <li className="list-row">
@@ -37,15 +38,13 @@ const SingleList = () => {
         />
       </div>
       <div>
-        <div>Dio Lupa</div>
+        <div>{item.name}</div>
         <div className="text-xs uppercase font-semibold opacity-60">
-          Remaining Reason
+          {item.email}
         </div>
       </div>
       <p className="list-col-wrap text-xs">
-        "Remaining Reason" became an instant hit, praised for its haunting sound
-        and emotional depth. A viral performance brought it widespread
-        recognition, making it one of Dio Lupa’s most iconic tracks.
+        {item.bio}
       </p>
       <button
         onClick={() => dispatch(openDeletePopup())}
@@ -55,11 +54,11 @@ const SingleList = () => {
       </button>
       <button
         onClick={() => dispatch(openEditPopup())}
-        className="btn btn-square btn-ghost"
+        className="btn btn-square btn-ghost bg-amber-600"
       >
         <FaEdit size={"1.2rem"} />
       </button>
-      <button className="btn btn-square btn-ghost">
+      <button className={`${item.highlighted?'bg-amber-50':''}btn btn-square btn-ghost`}>
         <FaRegHeart size={"1.2rem"} />
       </button>
     </li>
