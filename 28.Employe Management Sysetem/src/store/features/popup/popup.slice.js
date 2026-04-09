@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   editPopup: false,
-  deletePopup: true,
+  deletePopup: false,
 };
 
 export const popupSlice = createSlice({

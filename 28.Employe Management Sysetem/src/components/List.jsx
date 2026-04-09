@@ -2,6 +2,11 @@ import React from "react";
 import Layout from "./Layout";
 import { MdDeleteOutline } from "react-icons/md";
 import { FaEdit, FaRegHeart } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import {
+  openDeletePopup,
+  openEditPopup,
+} from "../store/features/popup/popup.slice";
 
 const List = () => {
   return (
@@ -22,6 +27,7 @@ const List = () => {
 };
 
 const SingleList = () => {
+  const dispatch = useDispatch();
   return (
     <li className="list-row">
       <div>
@@ -41,10 +47,16 @@ const SingleList = () => {
         and emotional depth. A viral performance brought it widespread
         recognition, making it one of Dio Lupa’s most iconic tracks.
       </p>
-      <button className="btn btn-square btn-ghost">
+      <button
+        onClick={() => dispatch(openDeletePopup())}
+        className="btn btn-square btn-ghost"
+      >
         <MdDeleteOutline size={"1.2rem"} />
       </button>
-      <button>
+      <button
+        onClick={() => dispatch(openEditPopup())}
+        className="btn btn-square btn-ghost"
+      >
         <FaEdit size={"1.2rem"} />
       </button>
       <button className="btn btn-square btn-ghost">
